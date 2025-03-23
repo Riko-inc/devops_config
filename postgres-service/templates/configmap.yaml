@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Values.namespace }}
 data:
   DB_HOST: {{ .Values.service.name }}
-  DB_PORT: "{{ .Values.port }}"
-  DB_NAME: {{ .Values.database }}
-  DB_USER: {{ .Values.user }}
-  DB_PASSWORD: {{ .Values.password }}
+  DB_PORT: "{{ .Values.service.port }}"
+  DB_NAME: {{ .Values.service.database }}
+  DB_USER: {{ .Values.service.user }}
+  DB_PASSWORD: {{ .Values.service.password }}
