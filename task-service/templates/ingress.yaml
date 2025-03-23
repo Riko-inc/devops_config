@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "task-service.fullname" . }}-ingress
+  name: {{ include "task-service.name" . }}-ingress
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
@@ -14,7 +14,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: {{ include "task-service.fullname" . }}
+                name: {{ include "task-service.name" . }}
                 port:
                   number: {{ .Values.service.port }}
 {{- end }}

@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "task-service.fullname" . }}
+  name: {{ include "task-service.name" . }}
   labels:
     app: {{ include "task-service.name" . }}
 spec:
