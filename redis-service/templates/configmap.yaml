@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: redis-config
+  name: {{ .Values.service.name }}-config
   namespace: {{ .Values.namespace }}
 data:
   REDIS_HOST: {{ .Values.service.name }}

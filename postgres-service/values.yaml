@@ -1,7 +1,7 @@
 namespace: services
 image: postgres:latest
 service:
-  name: posgres
+  name: postgres
   database: mydatabase
   user: myuser
   password: secret

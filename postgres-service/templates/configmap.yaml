@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Values.service.name }}
+  name: {{ .Values.service.name }}-config
   namespace: {{ .Values.namespace }}
 data:
   DB_HOST: {{ .Values.service.name }}
