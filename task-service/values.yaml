@@ -1,4 +1,5 @@
 replicaCount: 1
+namespace: services
 
 image:
   repository: riko-inc/task-service
