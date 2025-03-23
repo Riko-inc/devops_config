@@ -2,8 +2,8 @@ controller:
   service:
     type: NodePort
     nodePorts:
-      http: 80
-      https: 443
+      http: 31064
+      https: 31065
     externalTrafficPolicy: Local
   hostNetwork: true
   ingressClassResource:
