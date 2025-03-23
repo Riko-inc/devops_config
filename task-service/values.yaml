@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: task-service
   tag: latest
-  pullPolicy: IfNotPresent
+  pullPolicy: Never
 
 service:
   port: 8080
