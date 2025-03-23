@@ -7,5 +7,5 @@ data:
   DB_HOST: {{ include "postgres.fullname" . }}
   DB_PORT: "{{ .Values.port }}"
   DB_NAME: {{ .Values.database }}
-  DB_USER: {{.Values.user }}
-  DB_PASSWORD: {{.Values.password }}
+  DB_USER: {{ .Values.user }}
+  DB_PASSWORD: {{ .Values.password }}
