@@ -4,14 +4,14 @@ kind: Ingress
 metadata:
   name: {{ include "task-service.name" . }}-ingress
   annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: web
-    traefik.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
+  ingressClassName: nginx
   rules:
-    - host: {{ .Values.ingress.host }}
-      http:
+    - http:
         paths:
-          - path: /task
+          - path: /task(/|$)(.*)
             pathType: Prefix
             backend:
               service:
