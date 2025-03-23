@@ -1,0 +1,4 @@
+apiVersion: v2
+name: redis-service
+description: Redis service
+version: 1.0.0

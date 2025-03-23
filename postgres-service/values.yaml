@@ -1,0 +1,6 @@
+namespace: services
+image: postgres:latest
+database: mydatabase
+user: myuser
+password: secret
+port: 5432

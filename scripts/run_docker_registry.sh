@@ -1,3 +1,4 @@
+# fuck, you need DNS for this to work. Shiiiiiiit
 docker run -d -p 5000:5000 --restart=always \
   --name registry \
   -e REGISTRY_HTTP_SECRET=$(cat /home/user1/secrets/registry_secret) \

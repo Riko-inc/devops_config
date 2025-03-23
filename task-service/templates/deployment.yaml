@@ -20,6 +20,11 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: postgres-config
+            - configMapRef:
+                name: redis-config
           readinessProbe:
             httpGet:
               path: /actuator/health
