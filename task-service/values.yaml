@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: task-service
+  repository: riko-inc/task-service
   tag: latest
   pullPolicy: Never
 
