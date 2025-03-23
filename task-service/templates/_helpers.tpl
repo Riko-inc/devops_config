@@ -1,13 +1,13 @@
 {{/*
-Возвращает полное имя релиза с суффиксом chart-а
+Возвращает полное имя релиза с суффиксом task-service
 */}}
-{{- define "myservice.fullname" -}}
-{{- printf "%s-%s" .Release.Name "myservice" | trunc 63 | trimSuffix "-" -}}
+{{- define "task-service.fullname" -}}
+{{- printf "%s-task-service" .Release.Name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
 {{/*
-Возвращает имя chart-а
+Возвращает базовое имя сервиса
 */}}
-{{- define "myservice.name" -}}
-{{- default .Chart.Name "myservice" -}}
+{{- define "task-service.name" -}}
+{{- default .Chart.Name "task-service" -}}
 {{- end -}}

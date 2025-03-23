@@ -1,15 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "myservice.fullname" . }}
+  name: {{ include "task-service.fullname" . }}
   labels:
-    app: {{ include "myservice.name" . }}
+    app: {{ include "task-service.name" . }}
 spec:
   type: ClusterIP
   ports:
-    - port: {{ .Values.service.port }}
+    - protocol: TCP
+      port: {{ .Values.service.port }}
       targetPort: 8080
-      protocol: TCP
-      name: http
   selector:
-    app: {{ include "myservice.name" . }}
+    app: {{ include "task-service.name" . }}

@@ -1,19 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "myservice.fullname" . }}
+  name: {{ include "task-service.fullname" . }}
+  labels:
+    app: {{ include "task-service.name" . }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ include "myservice.name" . }}
+      app: {{ include "task-service.name" . }}
   template:
     metadata:
       labels:
-        app: {{ include "myservice.name" . }}
+        app: {{ include "task-service.name" . }}
     spec:
       containers:
-        - name: {{ include "myservice.name" . }}
+        - name: {{ include "task-service.name" . }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
