@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgres
+  name: {{ include "postgres.fullname" . }}
   namespace: {{ .Values.namespace }}
 spec:
   replicas: 1
@@ -18,10 +18,10 @@ spec:
           image: {{ .Values.image }}
           env:
             - name: POSTGRES_DB
-              value: {{ .Values.database }}
+              value: {{ .Values.service.database }}
             - name: POSTGRES_USER
-              value: {{ .Values.user }}
+              value: {{ .Values.service.user }}
             - name: POSTGRES_PASSWORD
-              value: {{ .Values.password }}
+              value: {{ .Values.service.password }}
           ports:
-            - containerPort: {{ .Values.port }}
+            - containerPort: {{ .Values.service.port }}

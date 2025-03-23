@@ -4,5 +4,5 @@ metadata:
   name: redis-config
   namespace: {{ .Values.namespace }}
 data:
-  REDIS_HOST: {{ include "redis.fullname" . }}
+  REDIS_HOST: {{ .Values.service.name }}
   REDIS_PORT: "{{ .Values.port }}"
