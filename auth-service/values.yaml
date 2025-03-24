@@ -3,7 +3,7 @@ namespace: services
 
 image:
   repository: riko-inc/auth-service
-  tag: ""
+  tag: "latest"
   pullPolicy: Never
 
 service:
