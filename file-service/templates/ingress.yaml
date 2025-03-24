@@ -11,7 +11,7 @@ spec:
   rules:
     - http:
         paths:
-          - path: /task/(.*)
+          - path: /file/(.*)
             pathType: ImplementationSpecific
             backend:
               service:
