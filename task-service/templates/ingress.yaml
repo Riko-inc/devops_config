@@ -4,14 +4,18 @@ metadata:
   name: {{ include "task-service.name" . }}-ingress
   namespace: services
   annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
     nginx.ingress.kubernetes.io/use-regex: "true"
+    meta.helm.sh/release-name: {{ .Release.Name }}
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+    app.kubernetes.io/managed-by: Helm
 spec:
   ingressClassName: nginx
   rules:
     - http:
         paths:
-          - path: /task(/|$)(.*)
-            pathType: Prefix
+          - path: /task/(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: {{ include "task-service.name" . }}
