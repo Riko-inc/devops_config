@@ -12,7 +12,7 @@ spec:
     - http:
         paths:
           - path: /task(/|$)(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: task-service
