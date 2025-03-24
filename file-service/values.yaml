@@ -3,7 +3,7 @@ namespace: services
 
 image:
   repository: riko-inc/file-service
-  tag: ""
+  tag: "latest"
   pullPolicy: Never
 
 service:
