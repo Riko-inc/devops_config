@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "auth-service.name" . }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ include "auth-service.name" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "auth-service.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "auth-service.name" . }}
+    spec:
+      containers:
+        - name: {{ include "auth-service.name" . }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: postgres-config
+            - configMapRef:
+                name: redis-config
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 20

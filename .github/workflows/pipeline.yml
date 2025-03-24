@@ -21,5 +21,6 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd /home/user1
+            git stash
             git pull origin develop
           debug: true

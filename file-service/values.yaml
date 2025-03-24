@@ -1,0 +1,22 @@
+replicaCount: 1
+namespace: services
+
+image:
+  repository: riko-inc/file-service
+  tag: latest
+  pullPolicy: Never
+
+service:
+  port: 8080
+
+ingress:
+  enabled: true
+  host: ""
+
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "100m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
