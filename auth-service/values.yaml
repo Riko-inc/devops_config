@@ -4,7 +4,7 @@ namespace: services
 image:
   repository: riko-inc/auth-service
   tag: "latest"
-  pullPolicy: Always
+  pullPolicy: Never
 
 service:
   port: 8080
