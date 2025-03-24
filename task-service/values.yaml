@@ -3,7 +3,7 @@ namespace: services
 
 image:
   repository: riko-inc/task-service
-  tag: latest
+  tag: ""
   pullPolicy: Never
 
 service:
