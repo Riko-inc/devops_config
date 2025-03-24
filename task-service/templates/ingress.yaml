@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: task-service-ingress
+  name: {{ include "task-service.name" . }}-ingress
   namespace: services
   annotations:
     nginx.ingress.kubernetes.io/use-regex: "true"
@@ -14,6 +14,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: task-service
+                name: {{ include "task-service.name" . }}
                 port:
                   number: 8080
