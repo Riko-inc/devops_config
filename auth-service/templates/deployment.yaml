@@ -5,6 +5,8 @@ metadata:
   namespace: {{ .Values.namespace }}
   labels:
     app: {{ include "auth-service.name" . }}
+  annotations:
+    commit: "{{ .Values.annotations.commit }}"
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
