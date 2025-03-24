@@ -12,6 +12,7 @@ service:
 ingress:
   enabled: true
   host: ""
+  prefix: task
 
 resources:
   requests:

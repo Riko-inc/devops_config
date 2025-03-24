@@ -7,4 +7,4 @@ data:
   SERVICE_PORT: "{{ .Values.service.port }}"
   SERVICE_NAME: {{ .Values.service.name }}
   DEFAULT_SCHEMA: {{ .Values.service.schema }}
-  SWAGGER_CONFIG_URL: "auth/v3/api-docs/swagger-config"
+  SWAGGER_CONFIG_URL: "{{ .Values.ingress.prefix }}/v3/api-docs/swagger-config"

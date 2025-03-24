@@ -4,8 +4,7 @@ metadata:
   name: {{ .Values.service.name }}-config
   namespace: {{ .Values.namespace }}
 data:
-  DB_HOST: {{ .Values.service.name }}
-  DB_PORT: "{{ .Values.service.port }}"
-  DB_NAME: {{ .Values.service.database }}
-  DB_USER: {{ .Values.service.user }}
-  DB_PASSWORD: {{ .Values.service.password }}
+  SERVICE_PORT: "{{ .Values.service.port }}"
+  SERVICE_NAME: {{ .Values.service.name }}
+  DEFAULT_SCHEMA: {{ .Values.service.schema }}
+  SWAGGER_CONFIG_URL: "file/v3/api-docs/swagger-config"
