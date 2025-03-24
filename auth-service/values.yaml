@@ -8,6 +8,8 @@ image:
 
 service:
   port: 8080
+  schema: auth_service
+  swagger-config-url: "/v3/api-docs/swagger-config"
 
 ingress:
   enabled: true
