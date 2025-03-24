@@ -3,8 +3,8 @@ namespace: services
 
 image:
   repository: riko-inc/task-service
-  tag: ""
-  pullPolicy: Never
+  tag: "latest"
+  pullPolicy: Always
 
 service:
   port: 8080
