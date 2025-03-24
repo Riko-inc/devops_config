@@ -9,5 +9,5 @@
 Возвращает базовое имя сервиса
 */}}
 {{- define "task-service.name" -}}
-{{- default .Chart.Name "task-service" -}}
+{{- default .Chart.Name -}}
 {{- end -}}
