@@ -22,15 +22,17 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - containerPort: 8080
+            - containerPort: {{ .Values.service.port }}
           envFrom:
             - configMapRef:
                 name: postgres-config
             - configMapRef:
                 name: redis-config
+            - configMapRef:
+                name: { { .Values.service.name } }-config
           readinessProbe:
             httpGet:
               path: /actuator/health
-              port: 8080
+              port: {{ .Values.service.port }}
             initialDelaySeconds: 10
             periodSeconds: 20
