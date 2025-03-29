@@ -8,8 +8,7 @@ image:
 
 service:
   port: 8080
-  name: file-service
-  schema: file_service
+  shortname: file
 
 ingress:
   enabled: true

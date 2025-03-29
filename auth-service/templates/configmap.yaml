@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Values.namespace }}
 data:
   SERVICE_PORT: "{{ .Values.service.port }}"
-  SERVICE_NAME: {{ .Values.service.name }}
-  DEFAULT_SCHEMA: {{ .Values.service.schema }}
-  SWAGGER_UI_PATH: "/{{ .Values.ingress.prefix }}/swagger-ui.html"
-  SWAGGER_API_PATH: "/{{ .Values.ingress.prefix }}/v3/api-docs"
+  SERVICE_NAME: "{{ .Values.service.shortname }}-service"
+  DEFAULT_SCHEMA: "{{ .Values.service.shortname }}_service"
+  SERVICE_SHORTNAME: "{{ .Values.service.shortname }}"
+  SWAGGER_PREFIX: "/{{ .Values.service.shortname }}"

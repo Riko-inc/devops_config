@@ -8,8 +8,7 @@ image:
 
 service:
   port: 8080
-  name: auth-service
-  schema: auth_service
+  shortname: auth
 
 ingress:
   enabled: true

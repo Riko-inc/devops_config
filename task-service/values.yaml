@@ -8,8 +8,7 @@ image:
 
 service:
   port: 8080
-  name: task-service
-  schema: task_service
+  shortname: task
 
 ingress:
   enabled: true
