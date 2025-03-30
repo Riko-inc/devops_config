@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.service.name }}-config
+  namespace: {{ .Values.namespace }}
+data:
+  SERVICE_PORT: "{{ .Values.service.port }}"
+  SERVICE_NAME: {{ .Values.service.shortname }}-service
+  DEFAULT_SCHEMA: {{ .Values.service.shortname }}_service
+  SERVICE_SHORTNAME: {{ .Values.service.shortname }}

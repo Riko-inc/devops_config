@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: global-config
+  namespace: {{ .Values.namespace }}
+data:
+  SERVER_IP: {{ .Values.server.ip }}
+  SERVER_HTTP_PORT: {{ .Values.server.port.http }}
+  SERVER_HTTPS_PORT: {{ .Values.server.port.https }}
+

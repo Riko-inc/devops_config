@@ -29,7 +29,9 @@ spec:
             - configMapRef:
                 name: redis-config
             - configMapRef:
-                name: { { .Values.service.name } }-config
+                name: "{{ .Values.service.name }}-config"
+            - configMapRef:
+                name: global-config
           readinessProbe:
             httpGet:
               path: /actuator/health
