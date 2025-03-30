@@ -11,4 +11,4 @@ service:
   task:
     prefix: "/task"
   auth:
-    prefix: "auth"
+    prefix: "/auth"
