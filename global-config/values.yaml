@@ -4,3 +4,11 @@ server:
   port:
     http: 31064
     https: 31065
+
+service:
+  file:
+    prefix: "/file"
+  task:
+    prefix: "/task"
+  auth:
+    prefix: "auth"

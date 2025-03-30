@@ -7,4 +7,7 @@ data:
   SERVER_IP: "{{ .Values.server.ip }}"
   SERVER_HTTP_PORT: "{{ .Values.server.port.http }}"
   SERVER_HTTPS_PORT: "{{ .Values.server.port.https }}"
+  AUTH_PREFIX: "{{ .Values.service.auth.prefix }}"
+  FILE_PREFIX: "{{ .Values.service.file.prefix }}"
+  TASK_PREFIX: "{{ .Values.service.task.prefix }}"
 
