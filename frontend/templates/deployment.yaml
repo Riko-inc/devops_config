@@ -32,9 +32,3 @@ spec:
                 name: "{{ .Values.service.name }}-config"
             - configMapRef:
                 name: global-config
-          readinessProbe:
-            httpGet:
-              path: /actuator/health
-              port: {{ .Values.service.port }}
-            initialDelaySeconds: 10
-            periodSeconds: 20
