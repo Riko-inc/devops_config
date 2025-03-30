@@ -1,13 +1,6 @@
 namespace: services
 server:
-  ip: "82.202.138.236"
+  ip: 82.202.138.236
   port:
-    http: "31064"
-    https: "31065"
-
-service:
-  name: postgres
-  database: mydatabase
-  user: myuser
-  password: secret
-  port: "5432"
+    http: 31064
+    https: 31065
