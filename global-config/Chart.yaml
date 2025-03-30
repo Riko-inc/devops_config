@@ -1,3 +1,4 @@
 apiVersion: v2
 name: global-config
-version: 0.1.0
+description: common configuration for all services
+version: 1.0.0
