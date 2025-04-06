@@ -8,3 +8,4 @@ data:
   SERVICE_NAME: {{ .Values.service.shortname }}-service
   DEFAULT_SCHEMA: {{ .Values.service.shortname }}_service
   SERVICE_SHORTNAME: {{ .Values.service.shortname }}
+  VITE_ENV_BASE_PATH: "/{{ .Values.service.shortname }}"
