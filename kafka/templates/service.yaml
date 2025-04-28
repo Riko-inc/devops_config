@@ -14,9 +14,6 @@ spec:
     - name: external
       port: {{ .Values.kafka.service.external.port }}
       targetPort: external
-      {{- if .Values.kafka.service.external.enabled }}
-      loadBalancer: {}
-      {{- end }}
     - name: metrics
       port: {{ .Values.kafka.service.metricsPort }}
       targetPort: metrics
