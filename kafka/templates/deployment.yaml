@@ -2,18 +2,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "kafka.fullname" . }}
-  namespace: {{ .Values.namespace }}
+  namespace: {{ .Values.namespace | default "default" }}
   labels:
-    {{ include "kafka.labels" . | nindent 4 }}
+    {{- include "kafka.labels" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      {{ include "kafka.selectorLabels" . | nindent 6 }}
+      {{- include "kafka.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{ include "kafka.selectorLabels" . | nindent 8 }}
+        {{- include "kafka.selectorLabels" . | nindent 8 }}
     spec:
       containers:
         - name: kafka
@@ -35,7 +35,7 @@ spec:
             - name: KAFKA_CFG_ADVERTISED_LISTENERS
               value: "INTERNAL://kafka:{{ .Values.kafka.service.internalPort }},EXTERNAL://kafka:{{ .Values.kafka.service.external.port }}"
             - name: KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP
-              value: "CONTROLLER:PLAINTEXT,INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT"
+              value: "{{ .Values.kafka.listenerSecurityProtocolMap }}"
             - name: KAFKA_CFG_CONTROLLER_LISTENER_NAMES
               value: "{{ .Values.kafka.controllerListenerNames }}"
             - name: KAFKA_CFG_INTER_BROKER_LISTENER_NAME
