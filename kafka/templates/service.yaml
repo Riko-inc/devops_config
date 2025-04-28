@@ -1,23 +1,24 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{"{{ include \"kafka.fullname\" . }}"}}
+  name: {{ include "kafka.fullname" . }}
+  namespace: {{ .Values.namespace }}
   labels:
-    {{"{{ include \"kafka.labels\" . | nindent 4 }}"}}
+    {{ include "kafka.labels" . | nindent 4 }}
 spec:
-  type: {{"{{ .Values.kafka.service.type }}"}}
+  type: {{ .Values.kafka.service.type }}
   ports:
     - name: internal
-      port: {{"{{ .Values.kafka.service.internalPort }}"}}
+      port: {{ .Values.kafka.service.internalPort }}
       targetPort: internal
     - name: external
-      port: {{"{{ .Values.kafka.service.external.port }}"}}
+      port: {{ .Values.kafka.service.external.port }}
       targetPort: external
-      {{"{{- if .Values.kafka.service.external.enabled }}"}}
+      {{- if .Values.kafka.service.external.enabled }}
       loadBalancer: {}
-      {{"{{- end }}"}}
+      {{- end }}
     - name: metrics
-      port: {{"{{ .Values.kafka.service.metricsPort }}"}}
+      port: {{ .Values.kafka.service.metricsPort }}
       targetPort: metrics
   selector:
-    {{"{{ include \"kafka.selectorLabels\" . | nindent 4 }}"}}
+    {{ include "kafka.selectorLabels" . | nindent 4 }}
