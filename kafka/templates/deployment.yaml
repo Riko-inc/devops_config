@@ -1,59 +1,63 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "kafka.fullname" . }}
-  labels: {{- include "kafka.labels" . | nindent 4 }}
+  name: {{"{{ include \"kafka.fullname\" . }}"}}
   namespace: {{ .Values.namespace }}
+  labels:
+    {{"{{ include \"kafka.labels\" . | nindent 4 }}"}}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: 1
   selector:
-    matchLabels: {{- include "kafka.selectorLabels" . | nindent 6 }}
+    matchLabels:
+      {{"{{ include \"kafka.selectorLabels\" . | nindent 6 }}"}}
   template:
     metadata:
-      labels: {{- include "kafka.labels" . | nindent 8 }}
+      labels:
+        {{"{{ include \"kafka.selectorLabels\" . | nindent 8 }}"}}
     spec:
       containers:
-        - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+        - name: kafka
+          image: "{{"{{ .Values.kafka.image.repository }}"}}:{{"{{ .Values.kafka.image.tag }}"}}"
+          imagePullPolicy: {{"{{ .Values.kafka.image.pullPolicy }}"}}
           env:
             - name: KAFKA_CFG_NODE_ID
-              value: "{{ .Values.kafkaConfig.nodeId }}"
+              value: "{{"{{ .Values.kafka.nodeId }}"}}"
             - name: KAFKA_KRAFT_CLUSTER_ID
-              value: "{{ .Values.kafkaConfig.clusterId }}"
+              value: "{{"{{ .Values.kafka.clusterId }}"}}"
             - name: KAFKA_CFG_PROCESS_ROLES
-              value: "{{ .Values.kafkaConfig.processRoles }}"
+              value: "{{"{{ .Values.kafka.processRoles }}"}}"
             - name: KAFKA_CFG_CONTROLLER_QUORUM_VOTERS
-              value: "{{ .Values.kafkaConfig.nodeId }}@{{ include "kafka.fullname" . }}:{{ .Values.kafkaConfig.listeners.controller.port }}"
+              value: "{{"{{ .Values.kafka.controllerQuorumVoters }}"}}"
             - name: KAFKA_CFG_SUPER_USERS
-              value: "{{ .Values.kafkaConfig.superUsers }}"
+              value: "{{"{{ .Values.kafka.superUsers }}"}}"
             - name: KAFKA_CFG_LISTENERS
-              value: "INTERNAL://:{{ .Values.kafkaConfig.listeners.internal.port }},EXTERNAL://:{{ .Values.kafkaConfig.listeners.external.port }},CONTROLLER://:{{ .Values.kafkaConfig.listeners.controller.port }}"
+              value: "INTERNAL://:{{"{{ .Values.kafka.service.internalPort }}"}},EXTERNAL://:{{"{{ .Values.kafka.service.external.port }}"}},CONTROLLER://:9093"
             - name: KAFKA_CFG_ADVERTISED_LISTENERS
-              value: "INTERNAL://{{ include "kafka.fullname" . }}:{{ .Values.kafkaConfig.listeners.internal.port }},EXTERNAL://{{ include "kafka.fullname" . }}:{{ .Values.kafkaConfig.listeners.external.port }}"
+              value: "INTERNAL://{{"{{ include \"kafka.fullname\" . }}"}}:{{"{{ .Values.kafka.service.internalPort }}"}},EXTERNAL://{{"{{ include \"kafka.fullname\" . }}"}}:{{"{{ .Values.kafka.service.external.port }}"}}"
             - name: KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP
-              value: "CONTROLLER:PLAINTEXT,INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT"
+              value: "{{"{{ .Values.kafka.listenerSecurityProtocolMap }}"}}"
             - name: KAFKA_CFG_CONTROLLER_LISTENER_NAMES
-              value: "CONTROLLER"
+              value: "{{"{{ .Values.kafka.controllerListenerNames }}"}}"
             - name: KAFKA_CFG_INTER_BROKER_LISTENER_NAME
-              value: "INTERNAL"
+              value: "{{"{{ .Values.kafka.interBrokerListenerName }}"}}"
           ports:
-            - containerPort: {{ .Values.kafkaConfig.listeners.internal.port }}
-              name: internal
-            - containerPort: {{ .Values.kafkaConfig.listeners.external.port }}
-              name: external
-            - containerPort: {{ .Values.kafkaConfig.listeners.controller.port }}
-              name: controller
-          volumeMounts:
-            - name: data
-              mountPath: /bitnami/kafka
+            - name: internal
+              containerPort: {{"{{ .Values.kafka.service.internalPort }}"}}
+            - name: external
+              containerPort: {{"{{ .Values.kafka.service.external.port }}"}}
+            - name: metrics
+              containerPort: {{"{{ .Values.kafka.service.metricsPort }}"}}
           readinessProbe:
             tcpSocket:
-              port: internal
-            initialDelaySeconds: 30
-            periodSeconds: 5
-            timeoutSeconds: 10
-            failureThreshold: 3
-      volumes:
-      - name: data
-        emptyDir: {}
+              port: {{"{{ .Values.kafka.service.internalPort }}"}}
+            initialDelaySeconds: {{"{{ .Values.kafka.readinessProbe.initialDelaySeconds }}"}}
+            periodSeconds: {{"{{ .Values.kafka.readinessProbe.periodSeconds }}"}}
+            timeoutSeconds: {{"{{ .Values.kafka.readinessProbe.timeoutSeconds }}"}}
+            failureThreshold: {{"{{ .Values.kafka.readinessProbe.failureThreshold }}"}}
+          livenessProbe:
+            tcpSocket:
+              port: {{"{{ .Values.kafka.service.internalPort }}"}}
+            initialDelaySeconds: {{"{{ .Values.kafka.livenessProbe.initialDelaySeconds }}"}}
+            periodSeconds: {{"{{ .Values.kafka.livenessProbe.periodSeconds }}"}}
+            timeoutSeconds: {{"{{ .Values.kafka.livenessProbe.timeoutSeconds }}"}}
+            failureThreshold: {{"{{ .Values.kafka.livenessProbe.failureThreshold }}"}}
