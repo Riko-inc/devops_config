@@ -31,9 +31,9 @@ spec:
             - name: KAFKA_CFG_SUPER_USERS
               value: "{{ .Values.kafka.superUsers }}"
             - name: KAFKA_CFG_LISTENERS
-              value: "INTERNAL://:{{ .Values.kafka.service.internalPort }},EXTERNAL://:{{ .Values.kafka.service.external.port }},CONTROLLER://:9093"
+              value: "INTERNAL://:9092,EXTERNAL://:29092,CONTROLLER://:9093"
             - name: KAFKA_CFG_ADVERTISED_LISTENERS
-              value: "INTERNAL://kafka:{{ .Values.kafka.service.internalPort }},EXTERNAL://kafka:{{ .Values.kafka.service.external.port }}"  # Строка 34
+              value: "INTERNAL://kafka:9092,EXTERNAL://kafka:29092"
             - name: KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP
               value: "CONTROLLER:PLAINTEXT,INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT"
             - name: KAFKA_CFG_CONTROLLER_LISTENER_NAMES
