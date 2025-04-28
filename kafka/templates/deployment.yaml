@@ -33,9 +33,12 @@ spec:
             - name: KAFKA_CFG_LISTENERS
               value: "INTERNAL://:{{ .Values.kafka.service.internalPort }},EXTERNAL://:{{ .Values.kafka.service.external.port }},CONTROLLER://:9093"
             - name: KAFKA_CFG_ADVERTISED_LISTENERS
-              value: "{{ printf "INTERNAL://%s:%d,EXTERNAL://%s:%d" (include "kafka.fullname" .) .Values.kafka.service.internalPort (include "kafka.fullname" .) .Values.kafka.service.external.port | quote }}"
+              value: {{ (printf "INTERNAL://%s:%d,EXTERNAL://%s:%d" \
+                (include "kafka.fullname" .) .Values.kafka.service.internalPort \
+                (include "kafka.fullname" .) .Values.kafka.service.external.port) | quote }}
             - name: KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP
-              value: "{{ .Values.kafka.listenerSecurityProtocolMap }}"
+              value: {{ .Values.kafka.listenerSecurityProtocolMap | quote }}
+
             - name: KAFKA_CFG_CONTROLLER_LISTENER_NAMES
               value: "{{ .Values.kafka.controllerListenerNames }}"
             - name: KAFKA_CFG_INTER_BROKER_LISTENER_NAME
