@@ -1,6 +1,4 @@
 namespace: services
-networkPolicy:
-  enabled: false
 kafka:
   image:
     repository: bitnami/kafka
@@ -9,7 +7,7 @@ kafka:
   nodeId: "0"
   clusterId: "abcdefghijklmnopqrstuv"
   processRoles: "controller,broker"
-  controllerQuorumVoters: "0@kafka:9093"
+  controllerQuorumVoters: "0@kafka.services.svc.cluster.local:9092:9093"
   superUsers: "User:sa"
   listenerSecurityProtocolMap: "CONTROLLER:PLAINTEXT,INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT"
   controllerListenerNames: "CONTROLLER"
@@ -19,7 +17,6 @@ kafka:
     internalPort: 9092
     external:
       enabled: true
-      type: LoadBalancer
       port: 29092
     metricsPort: 9404
   readinessProbe:
