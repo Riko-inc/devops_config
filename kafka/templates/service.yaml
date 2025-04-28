@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: {{ include "kafka.fullname" . }}
   labels: {{- include "kafka.labels" . | nindent 4 }}
-  namespace: { { .Values.namespace } }
+  namespace: {{ .Values.namespace }}
 spec:
   type: {{ .Values.service.type }}
   selector: {{- include "kafka.selectorLabels" . | nindent 4 }}
