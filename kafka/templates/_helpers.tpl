@@ -10,6 +10,6 @@ helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }}
 {{- end }}
 
 {{- define "kafka.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "kafka.fullname" . }}
+app.kubernetes.io/name: "kafka"
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
