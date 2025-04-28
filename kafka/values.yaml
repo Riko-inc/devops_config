@@ -1,3 +1,5 @@
+namespace: services
+
 image:
   repository: bitnami/kafka
   tag: 3.8

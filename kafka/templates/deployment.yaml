@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: {{ include "kafka.fullname" . }}
   labels: {{- include "kafka.labels" . | nindent 4 }}
+  namespace: { { .Values.namespace } }
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
