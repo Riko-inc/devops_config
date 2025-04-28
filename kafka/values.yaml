@@ -1,3 +1,4 @@
+namespace: services
 kafka:
   image:
     repository: bitnami/kafka
