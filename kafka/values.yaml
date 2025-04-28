@@ -3,10 +3,10 @@ kafka:
     repository: bitnami/kafka
     tag: "3.8"
     pullPolicy: IfNotPresent
-  nodeId: 0
+  nodeId: "0"
   clusterId: "abcdefghijklmnopqrstuv"
   processRoles: "controller,broker"
-  controllerQuorumVoters: "0@{{ include \"kafka.fullname\" . }}:9093"
+  controllerQuorumVoters: "0@kafka:9093"
   superUsers: "User:sa"
   listenerSecurityProtocolMap: "CONTROLLER:PLAINTEXT,INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT"
   controllerListenerNames: "CONTROLLER"
