@@ -1,16 +1,12 @@
 {{- define "kafka.labels" -}}
-helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
-app.kubernetes.io/name: {{ .Chart.Name }}
-app.kubernetes.io/instance: {{ .Release.Name }}
-app.kubernetes.io/version: {{ .Chart.AppVersion }}
-app.kubernetes.io/managed-by: {{ .Release.Service }}
+helm.sh/chart: {{ .Chart.Name | quote }}-{{ .Chart.Version | replace "+" "_" | quote }}
+app.kubernetes.io/name: {{ .Chart.Name | quote }}
+app.kubernetes.io/instance: {{ .Release.Name | quote }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
 {{- end }}
 
 {{- define "kafka.selectorLabels" -}}
-app.kubernetes.io/name: {{ .Chart.Name }}
-app.kubernetes.io/instance: {{ .Release.Name }}
+app.kubernetes.io/name: {{ .Chart.Name | quote }}
+app.kubernetes.io/instance: {{ .Release.Name | quote }}
 {{- end }}
-
-{{- define "kafka.fullname" -}}
-{{- printf "%s-%s" .Release.Name .Chart.Name | trunc 63 | trimSuffix "-" -}}
-{{- end -}}

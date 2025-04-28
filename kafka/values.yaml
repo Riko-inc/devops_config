@@ -2,21 +2,21 @@ namespace: services
 
 image:
   repository: bitnami/kafka
-  tag: 3.8
+  tag: "3.8"
   pullPolicy: IfNotPresent
 
 replicaCount: 1
 
 kafkaConfig:
   clusterId: "abcdefghijklmnopqrstuv"
-  nodeId: 0
+  nodeId: "0"
   listeners:
     internal:
-      port: 9092
+      port: "9092"
     external:
-      port: 29092
+      port: "29092"
     controller:
-      port: 9093
+      port: "9093"
   processRoles: "controller,broker"
   superUsers: "User:sa"
 
@@ -24,10 +24,10 @@ persistence:
   enabled: true
   storageClass: ""
   accessModes: ["ReadWriteOnce"]
-  size: 8Gi
+  size: "8Gi"
 
 service:
   type: ClusterIP
   ports:
-    external: 29092
-    controller: 9093
+    external: "29092"
+    controller: "9093"
