@@ -1,19 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "kafka.fullname" . }}
+  name: {{ .Release.Name }}-kafka
   namespace: {{ .Values.namespace }}
   labels:
-    {{- include "kafka.labels" . | nindent 4 }}
+    app: kafka
+    release: {{ .Release.Name }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      {{- include "kafka.selectorLabels" . | nindent 6 }}
+      app: kafka
+      release: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        {{- include "kafka.selectorLabels" . | nindent 8 }}
+        app: kafka
+        release: {{ .Release.Name }}
     spec:
       containers:
         - name: kafka
@@ -31,9 +34,9 @@ spec:
             - name: KAFKA_CFG_SUPER_USERS
               value: "{{ .Values.kafka.superUsers }}"
             - name: KAFKA_CFG_LISTENERS
-              value: "INTERNAL://:9092,EXTERNAL://:29092,CONTROLLER://:9093"
+              value: "INTERNAL://:{{ .Values.kafka.service.internalPort }},EXTERNAL://:{{ .Values.kafka.service.external.port }},CONTROLLER://:9093"
             - name: KAFKA_CFG_ADVERTISED_LISTENERS
-              value: "INTERNAL://kafka:9092,EXTERNAL://kafka:29092"
+              value: "INTERNAL://kafka:{{ .Values.kafka.service.internalPort }},EXTERNAL://kafka:{{ .Values.kafka.service.external.port }}"
             - name: KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP
               value: "CONTROLLER:PLAINTEXT,INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT"
             - name: KAFKA_CFG_CONTROLLER_LISTENER_NAMES
