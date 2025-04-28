@@ -21,12 +21,12 @@ kafka:
       port: 29092
     metricsPort: 9404
   readinessProbe:
-    initialDelaySeconds: 30
-    periodSeconds: 5
+    initialDelaySeconds: 90
+    periodSeconds: 20
     timeoutSeconds: 10
     failureThreshold: 3
   livenessProbe:
-    initialDelaySeconds: 30
-    periodSeconds: 5
+    initialDelaySeconds: 90
+    periodSeconds: 20
     timeoutSeconds: 10
     failureThreshold: 3
