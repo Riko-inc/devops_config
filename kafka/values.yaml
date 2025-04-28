@@ -1,4 +1,6 @@
 namespace: services
+networkPolicy:
+  enabled: false
 kafka:
   image:
     repository: bitnami/kafka
