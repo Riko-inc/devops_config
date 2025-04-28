@@ -14,10 +14,10 @@ kafka:
   service:
     type: ClusterIP
     internalPort: 9092
-    externalPort: 29092
     external:
       enabled: true
       type: LoadBalancer
+      port: 29092
     metricsPort: 9404
   readinessProbe:
     initialDelaySeconds: 30
