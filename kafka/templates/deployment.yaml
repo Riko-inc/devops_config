@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka
+  namespace: services
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka
+  template:
+    metadata:
+      labels:
+        app: kafka
+    spec:
+      containers:
+        - name: kafka
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          ports:
+          - name: internal
+            containerPort: 9092
+          - name: external
+            containerPort: 29092
+          - name: controller
+            containerPort: 9093
+          - name: metrics
+            containerPort: 9404
+          env:
+            - name: KAFKA_CFG_NODE_ID
+              value: "{{ .Values.kafka.nodeId }}"
+            - name: KAFKA_KRAFT_CLUSTER_ID
+              value: "{{ .Values.kafka.clusterId }}"
+            - name: KAFKA_CFG_PROCESS_ROLES
+              value: "{{ join "," .Values.kafka.processRoles }}"
+            - name: KAFKA_CFG_CONTROLLER_QUORUM_VOTERS
+              value: "{{ .Values.kafka.controllerQuorumVoters }}"
+            - name: KAFKA_CFG_SUPER_USERS
+              value: "{{ .Values.kafka.superUsers }}"
+            - name: KAFKA_CFG_LISTENERS
+              value: "{{ .Values.kafka.listeners | join "," }}"
+            - name: KAFKA_CFG_ADVERTISED_LISTENERS
+              value: "{{ .Values.kafka.advertisedListeners | join "," }}"
+            - name: KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP
+              value: "{{ .Values.kafka.listenerSecurityProtocolMap | join "," }}"
+            - name: KAFKA_CFG_CONTROLLER_LISTENER_NAMES
+              value: "{{ .Values.kafka.controllerListenerNames }}"
+            - name: KAFKA_CFG_INTER_BROKER_LISTENER_NAME
+              value: "{{ .Values.kafka.interBrokerListenerName }}"
+          livenessProbe:
+            tcpSocket:
+              port: 9092
+            initialDelaySeconds: 30
+            periodSeconds: 5
+            timeoutSeconds: 10
+            failureThreshold: 3
