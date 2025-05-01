@@ -12,3 +12,7 @@ service:
     prefix: "/task"
   auth:
     prefix: "/auth"
+
+kafka:
+  server: kafka.services.svc.cluster.local
+  port: 9092
