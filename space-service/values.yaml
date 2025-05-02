@@ -1,0 +1,28 @@
+replicaCount: 1
+namespace: services
+
+image:
+  repository: riko-inc/space-service
+  tag: "latest"
+  pullPolicy: Never
+
+service:
+  port: 8080
+  name: space-service
+  shortname: task
+
+ingress:
+  enabled: true
+  host: ""
+  prefix: space
+
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "100m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+
+annotations:
+  commit: ""

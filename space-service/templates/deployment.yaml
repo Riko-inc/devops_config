@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "space-service.name" . }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ include "space-service.name" . }}
+  annotations:
+    commit: "{{ .Values.annotations.commit }}"
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "space-service.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "space-service.name" . }}
+    spec:
+      containers:
+        - name: {{ include "space-service.name" . }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.service.port }}
+          envFrom:
+            - configMapRef:
+                name: postgres-config
+            - configMapRef:
+                name: redis-config
+            - configMapRef:
+                name: "{{ .Values.service.name }}-config"
+            - configMapRef:
+                name: global-config
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: {{ .Values.service.port }}
+            initialDelaySeconds: 20
+            periodSeconds: 5
