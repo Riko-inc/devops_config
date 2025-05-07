@@ -50,9 +50,9 @@ spec:
             tcpSocket:
               port: 9092
             initialDelaySeconds: 30
-            periodSeconds: 5
-            timeoutSeconds: 10
-            failureThreshold: 3
+            periodSeconds: 20
+            timeoutSeconds: 30
+            failureThreshold: 20
           resources:
             requests:
               memory: "256Mi"
