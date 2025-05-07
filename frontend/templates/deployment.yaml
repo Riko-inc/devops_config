@@ -32,3 +32,10 @@ spec:
                 name: "{{ .Values.service.name }}-config"
             - configMapRef:
                 name: global-config
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "200m"
+            limits:
+              memory: "512Mi"
+              cpu: "250m"
