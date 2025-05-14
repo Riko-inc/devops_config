@@ -51,8 +51,8 @@ spec:
               port: 9092
             initialDelaySeconds: 30
             periodSeconds: 20
-            timeoutSeconds: 30
-            failureThreshold: 20
+            timeoutSeconds: 60
+            failureThreshold: 5
           resources:
             requests:
               memory: "256Mi"
