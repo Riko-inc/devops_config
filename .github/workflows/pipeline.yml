@@ -23,6 +23,5 @@ jobs:
             cd /home/user1
             git stash
             git pull origin develop
-            export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
             helm upgrade --install global-config ./global-config -n services
           debug: true
