@@ -9,7 +9,7 @@ image:
 service:
   port: 8080
   name: space-service
-  shortname: task
+  shortname: space
 
 ingress:
   enabled: true
