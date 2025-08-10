@@ -1,0 +1,30 @@
+replicaCount: 1
+namespace: services
+
+extraEnv: {}
+
+image:
+  repository: riko-inc/ml-service
+  tag: "latest"
+  pullPolicy: Never
+
+service:
+  port: 8080
+  name: ml-service
+  shortname: ml
+
+ingress:
+  enabled: true
+  host: ""
+  prefix: ml
+
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "100m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+
+annotations:
+  commit: ""
