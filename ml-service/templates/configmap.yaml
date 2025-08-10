@@ -9,7 +9,7 @@ data:
   DEFAULT_SCHEMA: {{ .Values.service.shortname }}_service
   SERVICE_SHORTNAME: {{ .Values.service.shortname }}
   SWAGGER_PREFIX: "/{{ .Values.service.shortname }}"
-  AUTH_SERVICE_HOST: "auth-service"
+  AUTH_SERVICE_HOST: "http://auth-service"
   PORT: "8080"
   {{- range $key, $value := .Values.extraEnv }}
   {{ $key }}: {{ $value | quote }}
