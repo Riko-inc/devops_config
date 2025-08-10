@@ -32,6 +32,8 @@ spec:
                 name: "{{ .Values.service.name }}-config"
             - configMapRef:
                 name: global-config
+            - configMapRef:
+                name: ml-secret-config
           readinessProbe:
             httpGet:
               path: /actuator/health
