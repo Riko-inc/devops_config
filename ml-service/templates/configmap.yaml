@@ -9,5 +9,5 @@ data:
   DEFAULT_SCHEMA: {{ .Values.service.shortname }}_service
   SERVICE_SHORTNAME: {{ .Values.service.shortname }}
   SWAGGER_PREFIX: "/{{ .Values.service.shortname }}"
-  AUTH_SERVICE_HOST: "http://auth-service"
+  AUTH_SERVICE_HOST: "http://auth-service:8080"
   PORT: "8080"
