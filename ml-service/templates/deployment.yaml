@@ -36,7 +36,7 @@ spec:
                 name: ml-secret-config
           readinessProbe:
             httpGet:
-              path: /actuator/health
+              path: /health
               port: {{ .Values.service.port }}
             initialDelaySeconds: 60
             periodSeconds: 5
