@@ -10,4 +10,6 @@ data:
   SERVICE_SHORTNAME: {{ .Values.service.shortname }}
   SWAGGER_PREFIX: "/{{ .Values.service.shortname }}"
   AUTH_SERVICE_HOST: "http://auth-service:8080"
+  TASK_SERVICE_HOST: "http://task-service:8080"
+  SPACE_SERVICE_HOST: "http://space-service:8080"
   PORT: "8080"
